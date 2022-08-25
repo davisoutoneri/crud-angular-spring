@@ -21,7 +21,7 @@ export class CoursesService {
     );
   }
 
-  save(record: Course){
+  save(record: Partial<Course>){ //Partial<> faz com que se aceite o que se recebe contanto que tenha pelo menos uma característica do objeto. Ex: name, category | e sem _id
     return this.httpClient.post<Course>(this.API, record).pipe(first());
   }
 }
