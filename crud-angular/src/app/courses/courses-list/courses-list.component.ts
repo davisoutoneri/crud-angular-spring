@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { Course } from '../model/course';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses-list',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesListComponent implements OnInit {
 
-  constructor() { }
+  @Input() courses: Course[] = [];
+
+  readonly displayedColumns = ['name','category','actions'];
+
+  constructor( private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], {relativeTo:this.route});
   }
 
 }
